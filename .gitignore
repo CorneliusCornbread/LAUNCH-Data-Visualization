@@ -61,3 +61,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+Data Visualization/Library/
+
+Data Visualization/Temp/
+
+Data Visualization/Logs/
