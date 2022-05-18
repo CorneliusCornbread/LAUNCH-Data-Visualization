@@ -2,9 +2,11 @@ using System.Collections.Generic;
 
 public interface IGraph
 {
-    public void InitializeGraph(IList<IList<float>> data);
+    public bool IsInitialized();
+    
+    public void InitializeGraph(List<List<float>> data);
 
-    public void UpdateGraphValues(IList<IList<float>> data);
+    public void UpdateGraphValues(List<List<float>> data);
 
     public void DeleteGraph();
 }
