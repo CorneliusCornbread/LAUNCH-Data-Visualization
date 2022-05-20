@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace LAUNCH.Visualization
@@ -89,13 +90,7 @@ namespace LAUNCH.Visualization
         public void UpdateData(List<List<float>> newData)
         {
             // Clone list
-            _data = new List<List<float>>(newData.Count);
-
-            foreach (List<float> lists in newData)
-            {
-                List<float> row = new List<float>(lists);
-                _data.Add(row);
-            }
+            _data = newData.Select(a => a.ToList()).ToList();
             
             if (graph == null)
                 return;
