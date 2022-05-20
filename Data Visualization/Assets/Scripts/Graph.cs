@@ -28,7 +28,7 @@ namespace LAUNCH.Visualization
 
             foreach (Transform child in transform)
             {
-                Destroy(child);
+                Destroy(child.gameObject);
             }
         }
     }
