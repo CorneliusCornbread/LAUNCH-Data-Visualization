@@ -1,37 +1,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GraphManager : MonoBehaviour
+namespace LAUNCH.Visualization
 {
-    [SerializeField]
-    private IGraph graph;
-
-    [SerializeField]
-    private GameObject graphParent;
-
-    [SerializeField]
-    private List<List<float>> data;
-
-    private void Start()
+    public class GraphManager : MonoBehaviour
     {
-        graphParent.SetActive(false);
-        graph?.InitializeGraph(data);
-    }
+        [SerializeField, SerializeReference]
+        private Graph graph;
 
-    public void SwitchGraphs(IGraph newGraph)
-    {
-        if (graph == null)
+        [SerializeField]
+        private GameObject graphParent;
+
+        [SerializeField]
+        private List<List<float>> data;
+
+        private void Start()
         {
-            graph = newGraph;
-            return;
+            graphParent.SetActive(false);
+            graph?.InitializeGraph(data);
         }
-        
-        graph.DeleteGraph();
-        newGraph.InitializeGraph(data);
-    }
 
-    public void SetGraphsActive(bool active)
-    {
-        graphParent.SetActive(active);
+        public void SwitchGraphs(Graph newGraph)
+        {
+            if (graph == null)
+            {
+                graph = newGraph;
+                return;
+            }
+
+            graph.DeleteGraph();
+
+            graph = newGraph;
+            graph.InitializeGraph(data);
+        }
+
+        public void SetGraphsActive(bool active)
+        {
+            graphParent.SetActive(active);
+        }
     }
 }
