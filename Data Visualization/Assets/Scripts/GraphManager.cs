@@ -47,7 +47,7 @@ namespace LAUNCH.Visualization
         {
             graphParent.SetActive(false);
 
-            if (graph != null)
+            if (_data != null && _data != null)
             {
                 graph.InitializeGraph(_data);
             }

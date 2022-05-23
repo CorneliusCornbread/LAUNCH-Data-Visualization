@@ -1,17 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace LAUNCH.Visualization
 {
-    public class BarGraph : Graph
+    public class ScatterPlot : Graph
     {
         public override void InitializeGraph(List<List<float>> data)
         {
             base.InitializeGraph(data);
 
             Vector3 spawnPos = Vector3.zero;
-            
+
             foreach (List<float> row in data)
             {
                 spawnPos.z += spawnPrefab.transform.localScale.z * 1.5f;
@@ -20,15 +19,10 @@ namespace LAUNCH.Visualization
                 foreach (float value in row)
                 {
                     GameObject spawn = Instantiate(spawnPrefab, transform);
+                    spawn.transform.localPosition = spawnPos;
                     spawnPos.x += spawnPrefab.transform.localScale.x * 1.5f;
-
-                    Vector3 newScale = spawn.transform.localScale;
-                    newScale.y = value;
-
-                    Vector3 adjustedPos = spawnPos;
-                    adjustedPos.y = value / 2;
-                    spawn.transform.localPosition = adjustedPos;
-                    spawn.transform.localScale = newScale;
+                    
+                    spawn.transform.Translate(0, value, 0);
                 }
             }
         }
