@@ -101,27 +101,36 @@ namespace LAUNCH.Visualization
 
         public void MoveActiveGraphHorizontal(float value)
         {
-            Vector3 pos = graph.transform.localPosition;
-
+            Vector3 pos = graphParent.transform.localPosition;
             pos.x = Mathf.Lerp(minHoriz, maxHoriz, value);
-
-            graph.transform.localPosition = pos;
+            graphParent.transform.localPosition = pos;
+            
+            MoveIfRequired();
         }
         
         public void MoveActiveGraphVertical(float value)
         {
-            Vector3 pos = graph.transform.localPosition;
-
+            Vector3 pos = graphParent.transform.localPosition;
             pos.y = Mathf.Lerp(minVert, maxVert, value);
-
-            graph.transform.localPosition = pos;
+            graphParent.transform.localPosition = pos;
+            
+            MoveIfRequired();
         }
 
         public void OnScaleChange(float value)
         {
             float newScale = Mathf.Lerp(minScale, maxScale, value);
+            graphParent.transform.localScale = new Vector3(newScale, newScale, newScale);
+            
+            MoveIfRequired();
+        }
 
-            graph.transform.localScale = new Vector3(newScale, newScale, newScale);
+        private void MoveIfRequired()
+        {
+            if (!graph.RequiresRedrawOnMove()) return;
+            
+            graph.DeleteGraph();
+            graph.InitializeGraph(_data);
         }
     }
 }

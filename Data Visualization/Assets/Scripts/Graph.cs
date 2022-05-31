@@ -32,6 +32,11 @@ namespace LAUNCH.Visualization
             }
         }
 
+        public virtual bool RequiresRedrawOnMove()
+        {
+            return false;
+        }
+        
 #if UNITY_EDITOR
         [ContextMenu("Make Graph Active")]
         public void MakeMeActive()

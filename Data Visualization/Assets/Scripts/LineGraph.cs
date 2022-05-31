@@ -63,5 +63,10 @@ namespace LAUNCH.Visualization
                 previousLines = lines;
             }
         }
+
+        public override bool RequiresRedrawOnMove()
+        {
+            return true;
+        }
     }
 }
