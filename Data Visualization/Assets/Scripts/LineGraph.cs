@@ -8,16 +8,19 @@ namespace LAUNCH.Visualization
         public override void InitializeGraph(List<List<float>> data)
         {
             base.InitializeGraph(data);
-
+            
             Vector3 newPos = Vector3.zero;
 
-            List<LineRenderer> previousLines = new List<LineRenderer>(data.Count);
+            List<LineRenderer> previousLines = null;
 
             for (int i = 0; i < data.Count; i++)
             {
                 List<LineRenderer> lines = new List<LineRenderer>(data.Count);
 
                 GameObject previousSpawn = null;
+
+                newPos.z += spawnPrefab.transform.localScale.x * 1.5f;
+                newPos.x = 0;
 
                 for (int j = 0; j < data[i].Count; j++)
                 {
@@ -28,8 +31,14 @@ namespace LAUNCH.Visualization
                     spawn.transform.localPosition = newPos;
                     newPos.x += spawnPrefab.transform.localScale.x * 1.5f;
 
-                    LineRenderer line = spawn.GetComponentInChildren<LineRenderer>();
+                    LineRenderer line = spawn.GetComponent<LineRenderer>();
                     lines.Add(line);
+                    
+                    Vector3 position = spawn.transform.position;
+                    line.SetPosition(0, position);
+                    line.SetPosition(1, position);
+                    line.SetPosition(2, position);
+                    line.SetPosition(3, position);
 
                     if (previousSpawn != null)
                     {
@@ -39,18 +48,19 @@ namespace LAUNCH.Visualization
 
                     previousSpawn = spawn;
                 }
-
+                
                 if (previousLines != null)
                 {
-                    foreach (LineRenderer previousLine in previousLines)
+                    for (int j = 0; j < previousLines.Count && j < lines.Count; j++)
                     {
-                        foreach (LineRenderer line in lines)
-                        {
-                            previousLine.SetPosition(2, previousLine.transform.position);
-                            previousLine.SetPosition(3, line.transform.position);
-                        }
+                        LineRenderer previousLine = previousLines[j];
+                        
+                        previousLine.SetPosition(2, previousLine.transform.position);
+                        previousLine.SetPosition(3, lines[j].transform.position);
                     }
                 }
+
+                previousLines = lines;
             }
         }
     }

@@ -31,5 +31,15 @@ namespace LAUNCH.Visualization
                 Destroy(child.gameObject);
             }
         }
+
+#if UNITY_EDITOR
+        [ContextMenu("Make Graph Active")]
+        public void MakeMeActive()
+        {
+            GraphManager manager = FindObjectOfType<GraphManager>();
+            
+            manager.SwitchAndEnableGraph(this);
+        }
+#endif
     }
 }

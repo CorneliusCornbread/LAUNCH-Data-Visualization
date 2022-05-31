@@ -19,10 +19,12 @@ namespace LAUNCH.Visualization
                 foreach (float value in row)
                 {
                     GameObject spawn = Instantiate(spawnPrefab, transform);
-                    spawn.transform.localPosition = spawnPos;
-                    spawnPos.x += spawnPrefab.transform.localScale.x * 1.5f;
                     
-                    spawn.transform.Translate(0, value, 0);
+                    spawnPos.y = value;
+                    spawn.transform.localPosition = spawnPos;
+                    
+                    spawnPos.x += spawnPrefab.transform.localScale.x * 1.5f;
+
                 }
             }
         }

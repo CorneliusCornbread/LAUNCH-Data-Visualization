@@ -2246,7 +2246,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e74083c4164b5344a97c0097e736393d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4708,7 +4708,7 @@ GameObject:
   - component: {fileID: 4602251894248757635}
   - component: {fileID: 4601753422200779295}
   m_Layer: 0
-  m_Name: Cube UI Button (6)
+  m_Name: Hide Graph Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4727,7 +4727,7 @@ GameObject:
   - component: {fileID: 4602251894083402068}
   - component: {fileID: 4601753422030590664}
   m_Layer: 0
-  m_Name: Cube UI Button (2)
+  m_Name: Line Graph Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4746,7 +4746,7 @@ GameObject:
   - component: {fileID: 4602251893478283482}
   - component: {fileID: 4601753423036265286}
   m_Layer: 0
-  m_Name: Cube UI Button
+  m_Name: Bar Graph Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4765,7 +4765,7 @@ GameObject:
   - component: {fileID: 4602251893760611976}
   - component: {fileID: 4601753422832581908}
   m_Layer: 0
-  m_Name: Cube UI Button (1)
+  m_Name: Scatter Plot Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5250,7 +5250,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1116765208}
         m_TargetAssemblyTypeName: LAUNCH.Visualization.GraphManager, Assembly-CSharp
-        m_MethodName: SwitchGraphs
+        m_MethodName: SwitchAndEnableGraph
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2142953407}
@@ -5275,7 +5275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cba520a60e47274cb1e5afbb57aae0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
+  _manager: {fileID: 266545919}
   _ignoreHoverMode: 0
   _isIgnoringAllHoverState: 0
   _ignorePrimaryHover: 0
@@ -5301,7 +5301,19 @@ MonoBehaviour:
   _springForce: 0.1
   _OnPress:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1116765208}
+        m_TargetAssemblyTypeName: LAUNCH.Visualization.GraphManager, Assembly-CSharp
+        m_MethodName: SwitchAndEnableGraph
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1860249883}
+          m_ObjectArgumentAssemblyTypeName: LAUNCH.Visualization.Graph, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _OnUnpress:
     m_PersistentCalls:
       m_Calls: []
